@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserprofileTable extends Migration
+class CreateCompanyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateUserprofileTable extends Migration
      */
     public function up()
     {
-        Schema::create('userprofile', function (Blueprint $table) {
+        Schema::create('company', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-
-            // FOREIGN KEYS
-            $table->foreign('user_id')->references('id')->on('user');
-
+            $table->string('name')->unique();
+            $table->string('address');
+            $table->string('city');
+            $table->string('street_name');
+            $table->string('street_number');
             $table->timestamps();
-
         });
     }
 
@@ -32,6 +31,6 @@ class CreateUserprofileTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('userprofile');
+        Schema::dropIfExists('company');
     }
 }
